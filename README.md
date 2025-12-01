@@ -1,73 +1,89 @@
-# React + TypeScript + Vite
+# 💧 Liquid Planner
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Liquid Planner** es una aplicación web de planificación diaria dinámica y estética, diseñada para rutinas de alto rendimiento. No es solo una lista de tareas, es un sistema fluido que se adapta a tu día, permitiéndote gestionar bloques de tiempo, imprevistos y rutinas específicas (Gym vs Skillion) con una interfaz premium y moderna.
 
-Currently, two official plugins are available:
+![Liquid Planner Preview](./public/preview.png)
+*(Nota: Asegúrate de añadir una captura de pantalla en `public/preview.png` o elimina esta línea)*
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Características Principales
 
-## React Compiler
+*   **📅 Planificación Líquida**: Los bloques de tiempo se ajustan automáticamente. Si una tarea se retrasa, todo el horario se empuja hacia adelante.
+*   **🔄 Rutinas Predefinidas**:
+    *   **Gym Day**: Enfocado en entrenamiento físico y deep work.
+    *   **Skillion Day**: Enfocado en desarrollo de habilidades y gestión.
+*   **⚠️ Gestión de Caos**: Botón de "Imprevisto" para insertar urgencias (15, 30, 45, 60 min) y recalcular el día instantáneamente.
+*   **🌙 Modo Sueño**: Finaliza tu día con una pantalla de desconexión y prepara la plantilla para mañana.
+*   **👀 Vista "Mañana"**: Planifica el día siguiente sin afectar tu flujo actual.
+*   **🎨 UI Premium**: Diseño oscuro (Dark Mode), glassmorphism, animaciones fluidas y paleta de colores semántica.
+*   **💾 Persistencia Local**: Tus datos se guardan automáticamente en el navegador.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tecnologías Utilizadas
 
-## Expanding the ESLint configuration
+Este proyecto ha sido construido con las últimas tecnologías para asegurar rendimiento y escalabilidad:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+*   **[React](https://react.dev/)**: Librería principal para la UI.
+*   **[TypeScript](https://www.typescriptlang.org/)**: Para un código robusto y tipado.
+*   **[Vite](https://vitejs.dev/)**: Build tool ultrarrápido.
+*   **[Tailwind CSS v4](https://tailwindcss.com/)**: Framework de utilidades para el diseño (configurado con `@tailwindcss/vite`).
+*   **[Lucide React](https://lucide.dev/)**: Iconografía moderna y ligera.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Instalación y Uso Local
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Sigue estos pasos para correr el proyecto en tu máquina:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1.  **Clonar el repositorio**:
+    ```bash
+    git clone <tu-repositorio-url>
+    cd liquidplanner
+    ```
+
+2.  **Instalar dependencias**:
+    ```bash
+    npm install
+    ```
+
+3.  **Correr el servidor de desarrollo**:
+    ```bash
+    npm run dev
+    ```
+    Abre `http://localhost:5173` en tu navegador.
+
+## 📦 Construcción para Producción
+
+Para generar los archivos estáticos optimizados para producción:
+
+```bash
+npm run build
+```
+Los archivos se generarán en la carpeta `dist/`.
+
+## ☁️ Despliegue en Vercel
+
+Este proyecto está optimizado para desplegarse en [Vercel](https://vercel.com/) con cero configuración:
+
+1.  Sube tu código a GitHub/GitLab/Bitbucket.
+2.  Importa el repositorio en Vercel.
+3.  Vercel detectará automáticamente que es un proyecto **Vite**.
+4.  La configuración de build por defecto es correcta:
+    *   **Build Command**: `npm run build`
+    *   **Output Directory**: `dist`
+5.  Haz clic en **Deploy**.
+
+## 📂 Estructura del Proyecto
+
+```
+liquidplanner/
+├── src/
+│   ├── components/
+│   │   └── LiquidPlanner.tsx  # Componente principal con toda la lógica
+│   ├── App.tsx                # Punto de entrada de la aplicación
+│   ├── index.css              # Estilos globales y Tailwind
+│   └── main.tsx               # Montaje de React
+├── index.html                 # HTML base
+├── vite.config.ts             # Configuración de Vite + Tailwind
+└── package.json               # Dependencias y scripts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Hecho con 💙 para constructores de alto rendimiento.
